@@ -29,6 +29,21 @@ st.header("債権回収自動コールシステム_PHASE-3-------TESTINGGGGGGG")
 st.subheader("下記のところにエクセルのファイルアップしてください")
 
 
+def getting_year_month_day(date_string):
+    date_parts = date_string.split('年')
+    year = date_parts[0]
+    month_day_part = date_parts[1]
+    month_day_parts = month_day_part.split('月')
+    month = month_day_parts[0]
+    day = month_day_parts[1].replace('日', '')
+    day = str(int(day))
+    month = str(int(month))
+    return year, month, day
+    
+
+# Splitting the string based on the characters '年', '月', and '日'
+
+
 
 
 
@@ -63,7 +78,8 @@ if upload_file:
     show_df = df.rename(columns={
         'お客様番号': '番号', 
         '名前': '氏名', 
-        '電話番号': 'TEL', 
+        '電話番号': 'TEL',
+        '生年月日': '生年月日'
         'お支払い金額': 'お支払い金額', 
         'お引き落とし日': 'お引き落とし日', 
         '前回履歴': '前回履歴', 
@@ -98,6 +114,7 @@ if upload_file:
         audioLink1= list_audioLink1 #df["audio_link"].tolist()
         audioLink2= list_audioLink2 #df["audio_link2"].tolist()
         item_name=df["注釈"].tolist()
+        bday_check=df["生年月日"].tolist()
         money_left=df["お支払い金額"].tolist()
         senjitu_changer=df["お引き落とし日"].tolist()
 
@@ -149,6 +166,9 @@ if upload_file:
                               .create(parameters={
                                 'userName' : name_list[p]+"様",
                                 'name_checker' : name_list[p][0:2],
+                                'bday_year' : getting_year_month_day(bday_check[k])[0],
+                                'bday_month' : getting_year_month_day(bday_check[k])[1],
+                                'bday_day' : getting_year_month_day(bday_check[k])[2],
                                 'audioLink' : audioLink1[1],
                                 'audioLink2' : audioLink2[1],
                                 'item_to_twilio' : item_name[k],
