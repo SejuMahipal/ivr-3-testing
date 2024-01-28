@@ -167,7 +167,7 @@ if upload_file:
                                 'userName' : name_list[p]+"様",
                                 'name_checker' : name_list[p][0:2],
                                 'bday_year' : getting_year_month_day(bday_check[k])[0],
-                                'bday_month' : getting_year_month_day(bday_check[k])[1],
+                                'bday_month' : getting_year_month_day(bday_check[k])[1] + "月",
                                 'bday_day' : getting_year_month_day(bday_check[k])[2],
                                 'audioLink' : audioLink1[1],
                                 'audioLink2' : audioLink2[1],
