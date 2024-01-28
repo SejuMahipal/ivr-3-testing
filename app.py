@@ -169,6 +169,8 @@ if upload_file:
                                 'bday_year' : getting_year_month_day(bday_check[k])[0],
                                 'bday_month' : getting_year_month_day(bday_check[k])[1] + "月",
                                 'bday_day' : getting_year_month_day(bday_check[k])[2],
+                                'bday_month_day': getting_year_month_day(bday_check[k])[1] + "月" + getting_year_month_day(bday_check[k])[2],
+                                'bday_year_month': getting_year_month_day(bday_check[k])[0] + "年" + getting_year_month_day(bday_check[k])[1],
                                 'audioLink' : audioLink1[1],
                                 'audioLink2' : audioLink2[1],
                                 'item_to_twilio' : item_name[k],
