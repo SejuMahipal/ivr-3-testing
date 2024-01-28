@@ -48,10 +48,15 @@ def add_logs(str1,str2):
 
 upload_file = st.file_uploader("xlsxファイルをここにアップしてください", type="xlsx")
 if upload_file:
+    
     st.markdown("正しいファイルタイプ")
     df = pd.read_excel(upload_file, engine="openpyxl")
     df['電話番号'] = df['電話番号'].astype(str).str.replace(r'\D', '', regex=True)
     show_df = df.iloc[: , :] #df.iloc[: , :-2]
+
+
+
+
 
 
     # df['電話番号'] = df['電話番号'].astype(str).str.replace(r'\D', '', regex=True)
@@ -63,7 +68,7 @@ if upload_file:
         'お引き落とし日': 'お引き落とし日', 
         '前回履歴': '前回履歴', 
         '注釈': '注釈'
-    }, inplace = True)
+    })
 
     
     # show_df.rename(columns = {'Sr.':'番号', '名前':'氏名', 'TEL':'電話番号', 'thing':'商品・サービス', 'amount':'購入金額', 'Date_Added':'購入日'}, inplace = True)
