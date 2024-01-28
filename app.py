@@ -97,7 +97,7 @@ if upload_file:
         mobile_numbers_list1 = df["電話番号"].tolist()
         audioLink1= list_audioLink1 #df["audio_link"].tolist()
         audioLink2= list_audioLink2 #df["audio_link2"].tolist()
-        item_name=df["thing"].tolist()
+        item_name=df["注釈"].tolist()
         money_left=df["お支払い金額"].tolist()
         senjitu_changer=df["お引き落とし日"].tolist()
 
