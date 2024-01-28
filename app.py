@@ -22,6 +22,7 @@ phase2_voice = ["https://storage.googleapis.com/us.artifacts.kaga-shi-gomi-chatb
 senjitu_changer = ["2022年10月","2022年9月"]
 
 
+
 #Setting Page title and header
 st.set_page_config(page_title="Phase_3 Debt Collection project")
 st.header("債権回収自動コールシステム_PHASE-3-------TESTINGGGGGGG")
@@ -49,10 +50,23 @@ upload_file = st.file_uploader("xlsxファイルをここにアップしてく�
 if upload_file:
     st.markdown("正しいファイルタイプ")
     df = pd.read_excel(upload_file, engine="openpyxl")
+    df['電話番号'] = df['電話番号'].astype(str).str.replace(r'\D', '', regex=True)
     show_df = df.iloc[: , :] #df.iloc[: , :-2]
-    # date_added = ["2022年10月","2022年9月"]
-    # show_df['Date_Added'] = date_added
-    show_df.rename(columns = {'Sr.':'番号', 'Name':'氏名', 'TEL':'電話番号', 'thing':'商品・サービス', 'amount':'購入金額', 'Date_Added':'購入日'}, inplace = True)
+
+
+    # df['電話番号'] = df['電話番号'].astype(str).str.replace(r'\D', '', regex=True)
+    show_df = df.rename(columns={
+        'お客様番号': '番号', 
+        '名前': '氏名', 
+        '電話番号': 'TEL', 
+        'お支払い金額': 'お支払い金額', 
+        'お引き落とし日': 'お引き落とし日', 
+        '前回履歴': '前回履歴', 
+        '注釈': '注釈'
+    }, inplace = True)
+
+    
+    # show_df.rename(columns = {'Sr.':'番号', '名前':'氏名', 'TEL':'電話番号', 'thing':'商品・サービス', 'amount':'購入金額', 'Date_Added':'購入日'}, inplace = True)
     hide_table_row_index = """
             <style>
             thead tr th:first-child {display:none}
@@ -74,13 +88,13 @@ if upload_file:
 
     
         
-        name_list = df["Name"].tolist()
-        mobile_numbers_list1 = df["TEL"].tolist()
+        name_list = df["名前"].tolist()
+        mobile_numbers_list1 = df["電話番号"].tolist()
         audioLink1= list_audioLink1 #df["audio_link"].tolist()
         audioLink2= list_audioLink2 #df["audio_link2"].tolist()
         item_name=df["thing"].tolist()
-        money_left=df["amount"].tolist()
-        senjitu_changer=df["Date_Added"].tolist()
+        money_left=df["お支払い金額"].tolist()
+        senjitu_changer=df["お引き落とし日"].tolist()
 
         print("I am here man")
         print(name_list)
